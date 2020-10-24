@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   app:
     container_name: api
@@ -8,17 +8,21 @@ services:
     env_file:
       - .env
     ports:
-      - "8080:8080"
+      - '8080:8080'
     depends_on:
       - db
     volumes:
       - .:/usr/app
+      - ./controllers:/usr/app/controllers
+      - ./routers:/usr/app/routers
+      - ./services:/usr/app/services
+      - ./config:/usr/app/config
       - /usr/app/node_modules
   db:
     container_name: db
     image: mongo:latest
     ports:
-      - "27017:27017"
+      - '27017:27017'
     volumes:
       - dbdata:/data/db
 volumes:
