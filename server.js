@@ -1,10 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const app = express();
-require('dotenv').config();
+const express = require('express'),
+  mongoose = require('mongoose'),
+  app = express(),
+  config = require('./config/config');
 
 mongoose
-  .connect(process.env.DATABASE, {
+  .connect(config.mongoUri, {
     useNewUrlParser: true,
     useCreateIndex: true,
   })
@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to API!!!');
 });
 
-const port = process.env.PORT || 8080;
+const port = config.port;
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
