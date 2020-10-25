@@ -10,7 +10,7 @@ mongoose
   })
   .then(() => console.log('DB Connected'));
 
-app.use(require('./routes'));
+app.use(require('./routers'));
 
 app.get('/', (req, res) => {
   res.send('Welcome to API!!!');
