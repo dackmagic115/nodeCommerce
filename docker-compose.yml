@@ -16,6 +16,7 @@ services:
       - ./controllers:/usr/app/controllers
       - ./routers:/usr/app/routers
       - ./services:/usr/app/services
+      - ./models:/usr/app/models
       - ./config:/usr/app/config
       - /usr/app/node_modules
   db:
