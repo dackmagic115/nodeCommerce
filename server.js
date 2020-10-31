@@ -16,7 +16,6 @@ mongoose
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
 app.use(require('./routers'));
 
 app.get('/', (req, res) => {

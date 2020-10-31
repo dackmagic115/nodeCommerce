@@ -14,6 +14,7 @@ services:
     volumes:
       - .:/usr/app
       - ./controllers:/usr/app/controllers
+      - ./helpers:/usr/app/helpers
       - ./routers:/usr/app/routers
       - ./services:/usr/app/services
       - ./models:/usr/app/models
@@ -25,6 +26,6 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - dbdata:/data/db
+      - mongo:/data/db
 volumes:
-  dbdata:
+  mongo:

@@ -16,7 +16,7 @@ const uniqueMessage = (error) => {
 /**
  * Get the erroror message from error object
  */
-exports.errorHandler = (error) => {
+exports.errorHandler = (error, request, response, next) => {
   let message = '';
   if (error.code) {
     switch (error.code) {
@@ -25,7 +25,7 @@ exports.errorHandler = (error) => {
         message = uniqueMessage(error);
         break;
       default:
-        message = 'Something went wrong';
+        message = error.message;
     }
   } else {
     for (let errorName in error.errorors) {
