@@ -4,7 +4,8 @@ const express = require('express'),
   config = require('./config/config'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
-  cookieParser = require('cookie-parser');
+  cookieParser = require('cookie-parser'),
+  expressValidator = require('express-validator');
 
 mongoose
   .connect(config.mongoUri, {
@@ -16,8 +17,9 @@ mongoose
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(require('./routers'));
+app.use(expressValidator());
 
+app.use(require('./routers'));
 app.get('/', (req, res) => {
   res.send('Welcome to API!!!');
 });
