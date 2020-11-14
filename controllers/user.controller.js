@@ -12,3 +12,18 @@ exports.signUp = async (req, res) => {
     });
   }
 };
+
+exports.signIn = async (req, res) => {
+  try {
+    const signIn = await Service.signin(req.body);
+
+    res.cookie('t', signIn.token, { expire: new Date() + 9999 });
+    console.log(signIn);
+
+    return res.json({ token: signIn.token, user: signIn.user });
+  } catch (error) {
+    res.status(400).json({
+      error,
+    });
+  }
+};
