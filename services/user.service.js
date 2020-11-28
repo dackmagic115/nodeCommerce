@@ -11,11 +11,11 @@ exports.signin = async (params) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    new Error('something went wrong');
+    throw { message: 'email and password dont match' }
   }
 
   if (!user.authenticate(password)) {
-    throw new Error('user not found');
+    throw { message: 'email and password dont match' }
   }
 
   const token = jwt.sign({ _id: user.id }, config.jwtSecret);
