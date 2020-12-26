@@ -1,5 +1,6 @@
 const Service = require('../services/user.service');
 const { errorHandler } = require('../helpers/dbErrorHandler');
+const user = require('../models/user');
 exports.signUp = async (req, res) => {
   try {
     const result = await Service.signup(req.body);
@@ -30,4 +31,16 @@ exports.signIn = async (req, res) => {
 exports.signOut = (req, res) => {
   res.clearCookie('t');
   res.json({ message: 'Signout success' });
+};
+
+exports.userById = (req, res, next, id) => {
+  user.findById(id).exec((err, user) => {
+    if (err || !user) {
+      return res.status(400).json({
+        error: 'User not found',
+      });
+    }
+    req.profile = user;
+    next();
+  });
 };
