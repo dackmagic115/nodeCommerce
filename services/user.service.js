@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config');
+
 exports.signup = async (params) => {
   const userModel = new User(params);
   return userModel.save();
@@ -11,7 +12,7 @@ exports.signin = async (params) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    new Error('something went wrong');
+    throw new Error('something went wrong');
   }
 
   if (!user.authenticate(password)) {
