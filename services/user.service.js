@@ -16,7 +16,7 @@ exports.signin = async (params) => {
   }
 
   if (!user.authenticate(password)) {
-    throw new Error('user not found');
+    throw { message: 'email and password dont match' };
   }
 
   const token = jwt.sign({ _id: user.id }, config.jwtSecret);
