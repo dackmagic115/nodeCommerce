@@ -8,7 +8,9 @@ router.get('/:productId', read);
 router.post('/:userId', requireSignin, isAuth, isAdmin, create);
 router.delete('/:productId/:userId', requireSignin, isAuth, isAdmin, remove);
 router.put('/:productId/:userId', requireSignin, isAuth, isAdmin, update);
+
 router.get('', list);
+router.get('/related/:productId', listRelated);
 
 router.param('userId', userController.userById);
 router.param('productId', productById);
