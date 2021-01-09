@@ -5,8 +5,8 @@ const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   cookieParser = require('cookie-parser'),
-  expressValidator = require('express-validator');
-
+  expressValidator = require('express-validator'),
+  cors = require('cors');
 mongoose
   .connect(config.mongoUri, {
     useNewUrlParser: true,
@@ -18,6 +18,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+app.use(cors());
 
 app.use(require('./routers'));
 app.get('/', (req, res) => {
