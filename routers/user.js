@@ -8,6 +8,9 @@ router.get('/secret/:userId', requireSignin, isAuth, isAdmin, (req, res) => {
   });
 });
 
+router.get('/:userId', requireSignin, isAuth, controller.read);
+router.put('/:userId', requireSignin, isAuth, controller.update);
+
 router.param('userId', controller.userById);
 
 module.exports = router;
